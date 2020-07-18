@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Networking-concepts by achoudh5</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Networking-concepts</h1>
+        <p></p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/achoudh5/Networking-Concepts" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/achoudh5/Networking-Concepts/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/achoudh5/Networking-Concepts/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a id="nmap" class="anchor" href="#nmap" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>NMAP</h1>
+<h4>
+<a id="find-how-many-hosts-are-active-on-a-network" class="anchor" href="#find-how-many-hosts-are-active-on-a-network" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Find how many hosts are active on a network?</h4>
+<p><code>nmap -sP &lt;network address&gt;/&lt;subnet&gt;</code></p>
+<h5>
+<a id="how-to-find-which-of-the-hosts-above-are-acting-as-a-web-server" class="anchor" href="#how-to-find-which-of-the-hosts-above-are-acting-as-a-web-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to find which of the hosts above are acting as a web-server?</h5>
+<ul>
+<li>To act a web-server typically the server will have <strong>port 80,443</strong> in open state</li>
+</ul>
+<p>Alert! <code>nmap -sT -p 80,443 &lt;network address&gt;/&lt;subnet&gt;</code></p>
+<ul>
+<li>T-&gt; TCP Connect (Full open scan) <strong>3-way handshake</strong>
+</li>
+</ul>
+<p>Now, using the above command might get you in trouble, IDS/ Firewall will detect that there is something wrong. To avoid that:-</p>
+<p><code>nmap -sS -p 80,443 &lt;network-address&gt;/&lt;subnet&gt;</code></p>
+<ul>
+<li>S-&gt; Stealthy (SYN Scan; Half-open)</li>
+</ul>
+<p>Rather than <strong>3-way</strong> handshake it's just <strong>SYN,SYN-ACK</strong></p>
+<h5>
+<a id="how-to-find-which-os-is-being-used-by-the-target-server" class="anchor" href="#how-to-find-which-os-is-being-used-by-the-target-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to find which OS is being used by the target server?</h5>
+<p><code>nmap -O &lt;server-ip&gt;</code></p>
+<h4>
+<a id="how-to-find-the-os-version-scan-script-and-traceroute" class="anchor" href="#how-to-find-the-os-version-scan-script-and-traceroute" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to find the OS, version, scan script and traceroute?</h4>
+<p><code>nmap -A &lt;server-ip&gt;</code></p>
+<h4>
+<a id="decoy--d-using-this-will-generate-traffic-not-only-from-your-laptop-but-from-another-srcip-which-you-mention-in-the-command-below-the-destination-wont-know-who-is-actually-sending-this-traffic" class="anchor" href="#decoy--d-using-this-will-generate-traffic-not-only-from-your-laptop-but-from-another-srcip-which-you-mention-in-the-command-below-the-destination-wont-know-who-is-actually-sending-this-traffic" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Decoy (-D), using this will generate traffic not only from your laptop but from another src.ip which you mention in the command below, the destination won't know who is actually sending this traffic</h4>
+<p><code>nmap -sS -D &lt;Src.ip&gt; &lt;Dest.ip&gt;</code></p>
+<h4>
+<a id="write-custom-scripts-for-nmap" class="anchor" href="#write-custom-scripts-for-nmap" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Write custom scripts for nmap</h4>
+<p><a href="nmap.org/nsedoc/categories/vuln.html">Scripts</a></p>
+<p>vuln (uses any script under the above link category)</p>
+<p><code>nmap --script vuln &lt;host&gt;</code></p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/achoudh5">achoudh5</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
